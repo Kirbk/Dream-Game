@@ -1,18 +1,21 @@
+package dream.core;
 import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 
-import dream.core.Frame;
-import dream.core.GameState;
-import dream.core.GlobalVars;
 import dream.entities.Entity;
 import dream.entities.Player;
+import dream.entities.TestEntity;
 
 public class Main {
 	
-	public void init() {
+	public static void init() {
 		GlobalVars.frame = new Frame(GlobalVars.name, GlobalVars.version);
 		
 		GlobalVars.entities.add(new Player(20, 20));
+		
+		for(int x = 0; x <= 100; x++) {
+			GlobalVars.entities.add(new TestEntity());
+		}
 	}
 	
 	public void gameloop() {
@@ -44,6 +47,10 @@ public class Main {
 				
 				if(GlobalVars.keys.contains(KeyEvent.VK_D)) {
 					GlobalVars.scrollX -= GlobalVars.movementSpeed;
+				}
+				
+				if(GlobalVars.keys.contains(KeyEvent.VK_R)) {
+					GlobalVars.resetEntities();
 				}
 				
 				for(Entity e : GlobalVars.entities) {

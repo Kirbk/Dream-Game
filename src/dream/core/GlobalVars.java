@@ -44,6 +44,13 @@ public class GlobalVars {
 	public static ArrayList<Tile> tiles = new ArrayList<Tile>();
 	public static ArrayList<Entity> entities = new ArrayList<Entity>();
 	public static ArrayList<GUI> GUIs = new ArrayList<GUI>();
+	
+	
+	public static void resetEntities() {
+		entities = null;
+		entities = new ArrayList<Entity>();
+		Main.init();
+	}
 }
 
 class LoggerFormatter extends Formatter {

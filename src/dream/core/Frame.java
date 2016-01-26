@@ -52,7 +52,7 @@ class Panel extends JPanel {
 		
 		g2.setColor(Color.BLACK);
 		g2.drawString("FPS: " + GlobalVars.fps, 0, 10);
-		g2.drawString("Location: (" + ((double) GlobalVars.scrollX) / 16 + ", " + ((double) GlobalVars.scrollY) / 16 + ")", 0, 20);
+		g2.drawString("Location: (" + ((double) GlobalVars.scrollX) / (16 * GlobalVars.scale) + ", " + ((double) GlobalVars.scrollY) / (16 * GlobalVars.scale) + ")", 0, 20);
 		
 		GlobalVars.frameCount++;
 	}
