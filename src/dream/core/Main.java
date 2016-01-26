@@ -3,19 +3,11 @@ import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 
 import dream.entities.Entity;
-import dream.entities.Player;
-import dream.entities.TestEntity;
 
 public class Main {
 	
 	public static void init() {
 		GlobalVars.frame = new Frame(GlobalVars.name, GlobalVars.version);
-		
-		GlobalVars.entities.add(new Player(20, 20));
-		
-		for(int x = 0; x <= 100; x++) {
-			GlobalVars.entities.add(new TestEntity());
-		}
 	}
 	
 	public void gameloop() {
