@@ -19,9 +19,9 @@ public class LevelManager {
 		File[] list = null;
 		
 		try {
-			folder = new File(GlobalVars.directory.getAbsolutePath() + "/worlds/");
+			folder = new File(GlobalVars.directory.getPath() + "/worlds/");
 		}catch(Exception e) {
-			GlobalVars.logger.log(java.util.logging.Level.SEVERE, "Error: Folder not found");
+			GlobalVars.logger.log(java.util.logging.Level.SEVERE, "Error: Folder not found", e);
 		}
 		
 		list = folder.listFiles();

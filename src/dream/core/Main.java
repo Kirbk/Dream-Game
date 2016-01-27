@@ -40,6 +40,8 @@ public class Main {
 			GlobalVars.directory = resources;
 			copyWorldFiles();
 		}
+		
+		GlobalVars.directory = resources;
 	}
 	
 	private void copyWorldFiles() {
