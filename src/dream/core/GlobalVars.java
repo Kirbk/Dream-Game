@@ -29,6 +29,8 @@ public class GlobalVars {
 	public static int scale = 2;
 	public static int scrollX = 0, scrollY = 0;
 	public static final int movementSpeed = 5;
+	public static final String OS = System.getProperty("os.name").toUpperCase();
+	public static File directory;
 	
 	public static void logger() {
 		logger = Logger.getLogger(name);
@@ -55,6 +57,10 @@ public class GlobalVars {
 		
 		return parts[parts.length - 1];
 	}
+	
+	public static String[] worldFiles = {
+			"/worlds/examplechunk"
+	};
 }
 
 class LoggerFormatter extends Formatter {

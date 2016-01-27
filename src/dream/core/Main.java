@@ -1,17 +1,74 @@
 package dream.core;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.logging.Level;
 
 import dream.entities.Entity;
 import dream.levels.LevelManager;
+import dream.tiles.TileManager;
 
 public class Main {
 	
-	public static void init() {
+	public void init() {
+		loadDirectory();
+		
 		GlobalVars.frame = new Frame(GlobalVars.name, GlobalVars.version);
+		
+		TileManager tm = new TileManager("Tilesheet.png");
+		tm.seperate();
 		
 		LevelManager lm = new LevelManager();
 		lm.createLevel(1);
+	}
+	
+	private void loadDirectory() {
+		String workingDirectory;
+		
+		if(GlobalVars.OS.contains("WIN")) {
+			workingDirectory = System.getenv("AppData");
+		}else {
+			workingDirectory = System.getProperty("user.home");
+			workingDirectory += "/Library/Application Support";
+		}
+		
+		File resources = new File(workingDirectory + "/DreamGame/");
+		if(!resources.exists()) {
+			resources.mkdir();
+			GlobalVars.directory = resources;
+			copyWorldFiles();
+		}
+	}
+	
+	private void copyWorldFiles() {
+		File f = new File(GlobalVars.directory + "/worlds/");
+		f.mkdir();
+		for(String s : GlobalVars.worldFiles) {
+			InputStream input = ClassLoader.class.getResourceAsStream(s);
+			FileOutputStream output = null;
+			
+			try {
+				output = new FileOutputStream(GlobalVars.directory.toString() + "/" + s);
+				byte[] buffer = new byte[2048];
+				int r = input.read(buffer);
+				while(r != -1) {
+					output.write(buffer);
+					r = input.read(buffer);
+				}
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				if(output != null) {
+					try {
+						output.close();
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}
 	}
 	
 	public void gameloop() {
