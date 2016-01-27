@@ -10,15 +10,15 @@ import javax.swing.JPanel;
 
 import dream.entities.Entity;
 import dream.gui.GUI;
-import dream.tiles.Tile;
 
 public class Frame extends JFrame {
 	private static final long serialVersionUID = 1L;
 	
 	public Frame(String name, int version) {
+		super(name);
 		this.setContentPane(new Panel());
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
-		this.setUndecorated(true);
+		//this.setUndecorated(true);
 		this.setSize(new Dimension(800, 600));
 		this.addKeyListener(new KeyLogger());
 		this.setResizable(false);
@@ -38,8 +38,8 @@ class Panel extends JPanel {
 		g2.setColor(new Color(0.392f, 0.584f, 0.929f));
 		g2.fillRect(0, 0, this.getWidth(), this.getHeight());
 		
-		for(Tile t : GlobalVars.tiles) {
-			t.paint(g2);
+		if(GlobalVars.currentLevel != null) {
+			
 		}
 		
 		for(Entity e : GlobalVars.entities) {

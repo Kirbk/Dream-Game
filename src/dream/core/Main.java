@@ -3,11 +3,15 @@ import java.awt.event.KeyEvent;
 import java.util.logging.Level;
 
 import dream.entities.Entity;
+import dream.levels.LevelManager;
 
 public class Main {
 	
 	public static void init() {
 		GlobalVars.frame = new Frame(GlobalVars.name, GlobalVars.version);
+		
+		LevelManager lm = new LevelManager();
+		lm.createLevel(1);
 	}
 	
 	public void gameloop() {
@@ -26,23 +30,19 @@ public class Main {
 			
 			while(now - lastUpdateTime > TIME_BETWEEN_UPDATES && updateCount < MAX_UPDATES_BEFORE_RENDER) {
 				if(GlobalVars.keys.contains(KeyEvent.VK_W)) {
-					GlobalVars.scrollY += GlobalVars.movementSpeed;
+					GlobalVars.scrollY += GlobalVars.movementSpeed * GlobalVars.interpolation;
 				}
 				
 				if(GlobalVars.keys.contains(KeyEvent.VK_S)) {
-					GlobalVars.scrollY -= GlobalVars.movementSpeed;
+					GlobalVars.scrollY -= GlobalVars.movementSpeed * GlobalVars.interpolation;
 				}
 				
 				if(GlobalVars.keys.contains(KeyEvent.VK_A)) {
-					GlobalVars.scrollX += GlobalVars.movementSpeed;
+					GlobalVars.scrollX += GlobalVars.movementSpeed * GlobalVars.interpolation;
 				}
 				
 				if(GlobalVars.keys.contains(KeyEvent.VK_D)) {
-					GlobalVars.scrollX -= GlobalVars.movementSpeed;
-				}
-				
-				if(GlobalVars.keys.contains(KeyEvent.VK_R)) {
-					GlobalVars.resetEntities();
+					GlobalVars.scrollX -= GlobalVars.movementSpeed * GlobalVars.interpolation;
 				}
 				
 				for(Entity e : GlobalVars.entities) {

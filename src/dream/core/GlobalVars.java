@@ -1,5 +1,5 @@
 package dream.core;
-import java.awt.image.BufferedImage;
+import java.io.File;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 
 import dream.entities.Entity;
 import dream.gui.GUI;
+import dream.levels.Level;
 import dream.tiles.Tile;
 
 public class GlobalVars {
@@ -21,6 +22,7 @@ public class GlobalVars {
 	public static int version = 0;
 	public static Logger logger;
 	public static GameState currentGameState;
+	public static Level currentLevel;
 	public static float interpolation = 0.0f;
 	public static int fps;
 	public static int frameCount;
@@ -45,12 +47,13 @@ public class GlobalVars {
 	public static ArrayList<Tile> tiles = new ArrayList<Tile>();
 	public static ArrayList<Entity> entities = new ArrayList<Entity>();
 	public static ArrayList<GUI> GUIs = new ArrayList<GUI>();
+	public static ArrayList<Level> levels = new ArrayList<Level>();
 	
 	
-	public static void resetEntities() {
-		entities = null;
-		entities = new ArrayList<Entity>();
-		Main.init();
+	public static String getExtension(File file) {
+		String[] parts = file.getName().split("\\.");
+		
+		return parts[parts.length - 1];
 	}
 }
 
