@@ -17,8 +17,8 @@ public class Main {
 		
 		GlobalVars.frame = new Frame(GlobalVars.name, GlobalVars.version);
 		
-		TileManager tm = new TileManager("Tilesheet.png");
-		tm.seperate();
+		GlobalVars.tm = new TileManager("Tilesheet.png");
+		GlobalVars.tm.seperate();
 		
 		LevelManager lm = new LevelManager();
 		lm.createLevel(1);

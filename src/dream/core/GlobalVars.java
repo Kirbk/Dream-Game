@@ -16,6 +16,7 @@ import dream.entities.Entity;
 import dream.gui.GUI;
 import dream.levels.Level;
 import dream.tiles.Tile;
+import dream.tiles.TileManager;
 
 public class GlobalVars {
 	public static String name = "Dream Game";
@@ -31,6 +32,7 @@ public class GlobalVars {
 	public static final int movementSpeed = 5;
 	public static final String OS = System.getProperty("os.name").toUpperCase();
 	public static File directory;
+	public static TileManager tm;
 	
 	public static void logger() {
 		logger = Logger.getLogger(name);
